@@ -52,20 +52,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+# =============================================================================
+# DATABASE CONFIGURATION - REPLACE ONLY THIS SECTION
+# =============================================================================
+import dj_database_url
+
+# Default database (for local development)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'employee_management',
-        'USER': 'user1',
-        'PASSWORD': 'user1',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
@@ -97,12 +96,11 @@ ADMIN_URL = 'admin/'
 # =============================================================================
 # RENDER.COM DEPLOYMENT SETTINGS
 # =============================================================================
-import dj_database_url
 
 # Render.com detection - override settings for production
 if 'RENDER' in os.environ:
     DEBUG = False
-    ALLOWED_HOSTS = ['.onrender.com', 'employee-management-system.onrender.com']
+    ALLOWED_HOSTS = ['.onrender.com', 'employee-management-system-6c72.onrender.com']
     
     # Use environment variable for secret key in production
     SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
