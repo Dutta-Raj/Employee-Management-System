@@ -53,17 +53,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # =============================================================================
-# DATABASE CONFIGURATION - REPLACE ONLY THIS SECTION
+# DATABASE CONFIGURATION - FIXED
 # =============================================================================
-import dj_database_url
 
-# Default database (for local development)
+# For local development - SQLite (recommended for now)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Alternative: If you want MySQL locally (fix the name)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'employee_management',  # ✅ FIXED: No spaces
+#         'USER': 'user1',
+#         'PASSWORD': 'user1',  
+#         'HOST': '127.0.0.1',
+#         'PORT': '3006',  
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -82,7 +96,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'backend', 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Added for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
  
@@ -94,7 +108,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 ADMIN_URL = 'admin/'
 
 # =============================================================================
-# RENDER.COM DEPLOYMENT SETTINGS
+# RENDER.COM DEPLOYMENT SETTINGS - FIXED
 # =============================================================================
 
 # Render.com detection - override settings for production
@@ -105,11 +119,13 @@ if 'RENDER' in os.environ:
     # Use environment variable for secret key in production
     SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
     
-    # Database - Use Render's PostgreSQL
+    # Database - Use Render's PostgreSQL (requires dj-database-url)
+    import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(
             default=os.environ.get('DATABASE_URL'),
-            conn_max_age=600
+            conn_max_age=600,
+            ssl_require=True
         )
     }
     
