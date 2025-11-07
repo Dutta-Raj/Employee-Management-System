@@ -69,8 +69,8 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'employee_management',  # ✅ FIXED: No spaces
-#         'USER': 'user1',
-#         'PASSWORD': 'user1',  
+#         'USER': '*****',
+#         'PASSWORD': '*****',  
 #         'HOST': '127.0.0.1',
 #         'PORT': '3006',  
 #         'OPTIONS': {
