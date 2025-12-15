@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User 
-from .models import Employee 
+from .models import EmployeeProfile 
  
 class EmployeeRegistrationForm(UserCreationForm): 
     email = forms.EmailField(required=True) 
@@ -17,7 +17,7 @@ class EmployeeRegistrationForm(UserCreationForm):
             user.save() 
         return user 
  
-class EmployeeForm(forms.ModelForm): 
+class EmployeeProfileForm(forms.ModelForm): 
     class Meta: 
-        model = Employee 
-        fields = '__all__' 
+        model = EmployeeProfile 
+        exclude = ['user'] 
