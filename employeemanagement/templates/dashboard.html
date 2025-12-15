@@ -1,0 +1,37 @@
+<html> 
+<head> 
+<title>Dashboard</title> 
+<style> 
+body { font-family: Arial; margin: 0; } 
+.navbar { background: blue; color: white; padding: 15px; display: flex; justify-content: space-between; } 
+.container { padding: 20px; } 
+.card { background: #f0f0f0; padding: 20px; margin: 10px 0; } 
+.btn { padding: 10px 20px; border: none; cursor: pointer; } 
+.green { background: green; color: white; } 
+.red { background: red; color: white; } 
+</style> 
+</head> 
+<body> 
+<div class="navbar"> 
+<h2>Employee Dashboard</h2> 
+<div><a href="/" style="color: white;">Logout</a></div> 
+</div> 
+<div class="container"> 
+<div class="card"> 
+<h3>Attendance System</h3> 
+<p id="time">Time: Loading...</p> 
+<button class="btn green" onclick="timeIn()">Time In</button> 
+<button class="btn red" onclick="timeOut()">Time Out</button> 
+</div> 
+</div> 
+<script> 
+function updateTime() { 
+  document.getElementById('time').textContent = 'Time: ' + new Date().toLocaleTimeString(); 
+} 
+setInterval(updateTime, 1000); 
+updateTime(); 
+function timeIn() { alert('Time In recorded'); } 
+function timeOut() { alert('Time Out recorded'); } 
+</script> 
+</body> 
+</html> 

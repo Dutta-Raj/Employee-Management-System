@@ -1,0 +1,146 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Admin Portal</title> 
+    <style> 
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%%, #764ba2 100%%); 
+            min-height: 100vh; 
+        } 
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        } 
+        .header { 
+            text-align: center; 
+            color: white; 
+            margin-bottom: 60px; 
+        } 
+        .header h1 { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+        } 
+        .header p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+        } 
+        .admin-cards { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        } 
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 15px; 
+            padding: 30px; 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            animation: fadeInUp 0.6s ease-out; 
+            opacity: 0; 
+            animation-fill-mode: forwards; 
+        } 
+        .card:nth-child(1) { animation-delay: 0.2s; } 
+        .card:nth-child(2) { animation-delay: 0.4s; } 
+        .card:nth-child(3) { animation-delay: 0.6s; } 
+        .card:nth-child(4) { animation-delay: 0.8s; } 
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        } 
+        .card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+        } 
+        .card-icon { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+        } 
+        .card h3 { 
+            color: #333; 
+            margin-bottom: 15px; 
+            font-size: 1.5rem; 
+        } 
+        .card p { 
+            color: #666; 
+            margin-bottom: 20px; 
+            line-height: 1.6; 
+        } 
+        .btn { 
+            display: inline-block; 
+            background: linear-gradient(45deg, #667eea, #764ba2); 
+            color: white; 
+            padding: 12px 30px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            border: none; 
+            cursor: pointer; 
+        } 
+        .btn:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+        } 
+        .btn-admin { 
+            background: linear-gradient(45deg, #f44336, #ff9800); 
+        } 
+        .back-link { 
+            display: block; 
+            text-align: center; 
+            margin-top: 40px; 
+        } 
+        .back-link a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            opacity: 0.8; 
+            transition: opacity 0.3s ease; 
+        } 
+        .back-link a:hover { 
+            opacity: 1; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <div class="header"> 
+            <h1>?? Admin Portal</h1> 
+            <p>System administration and management dashboard</p> 
+        </div> 
+        <div class="admin-cards"> 
+            <div class="card"> 
+                <div class="card-icon">??</div> 
+                <h3>Django Admin Backend</h3> 
+                <p>Full database management with Django's powerful admin interface</p> 
+                <a href="/admin/" target="_blank" class="btn btn-admin">Go to Django Admin</a> 
+            </div> 
+            <div class="card"> 
+                <div class="card-icon">??</div> 
+                <h3>Employee Management</h3> 
+                <p>Add, edit, and manage employee records and information</p> 
+                <a href="/employee-registration/" class="btn">Manage Employees</a> 
+            </div> 
+            <div class="card"> 
+                <div class="card-icon">??</div> 
+                <p>View system analytics, generate reports and performance metrics</p> 
+                <a href="/dashboard/" class="btn">View Analytics</a> 
+            </div> 
+            <div class="card"> 
+                <div class="card-icon">?</div> 
+                <h3>System Settings</h3> 
+                <p>Configure system parameters, permissions and application settings</p> 
+                <button class="btn">Configure</button> 
+            </div> 
+        </div> 
+        <div class="back-link"> 
+            <a href="/"> Back to Homepage</a> 
+        </div> 
+    </div> 
+</body> 
+</html> 

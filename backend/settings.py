@@ -1,12 +1,11 @@
 import os 
 from pathlib import Path 
-import dj_database_url 
  
 BASE_DIR = Path(__file__).resolve().parent.parent 
  
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-this-now') 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True' 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.onrender.com,localhost,127.0.0.1').split(',') 
+SECRET_KEY = 'django-insecure-temporary-key-12345' 
+DEBUG = True 
+ALLOWED_HOSTS = [] 
  
 INSTALLED_APPS = [ 
     'django.contrib.admin', 
@@ -15,27 +14,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions', 
     'django.contrib.messages', 
     'django.contrib.staticfiles', 
-    'employees', 
+    'employees',  # We'll create this app 
 ] 
  
 MIDDLEWARE = [ 
     'django.middleware.security.SecurityMiddleware', 
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware', 
-    'django.contrib.messages.middleware.MessageMiddleware', 
     'django.middleware.common.CommonMiddleware', 
     'django.middleware.csrf.CsrfViewMiddleware', 
     'django.contrib.auth.middleware.AuthenticationMiddleware', 
+    'django.contrib.messages.middleware.MessageMiddleware', 
     'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ] 
  
 ROOT_URLCONF = 'backend.urls' 
-WSGI_APPLICATION = 'backend.wsgi.application' 
  
 TEMPLATES = [ 
     { 
         'BACKEND': 'django.template.backends.django.DjangoTemplates', 
-        'DIRS': [BASE_DIR / 'templates'], 
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/templates')], 
         'APP_DIRS': True, 
         'OPTIONS': { 
             'context_processors': [ 
@@ -49,10 +46,10 @@ TEMPLATES = [
 ] 
  
 DATABASES = { 
-    'default': dj_database_url.config( 
-        default='sqlite:///db.sqlite3', 
-        conn_max_age=600 
-    ) 
+    'default': { 
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': BASE_DIR / 'db.sqlite3', 
+    } 
 } 
  
 AUTH_PASSWORD_VALIDATORS = [ 
@@ -68,7 +65,24 @@ USE_I18N = True
 USE_TZ = True 
  
 STATIC_URL = 'static/' 
-STATIC_ROOT = BASE_DIR / 'staticfiles' 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/static')] 
  
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' 
+LOGIN_URL = 'login' 
+LOGIN_REDIRECT_URL = 'home' 
+LOGOUT_REDIRECT_URL = 'login' 
+ 
+# Authentication settings 
+LOGIN_REDIRECT_URL = 'home' 
+LOGOUT_REDIRECT_URL = 'login' 
+ 
+# Authentication settings 
+LOGIN_REDIRECT_URL = '/' 
+LOGOUT_REDIRECT_URL = '/' 
+ 
+# Additional apps 
+CRISPY_TEMPLATE_PACK = 'bootstrap4' 
+ 
+# Media files 
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
