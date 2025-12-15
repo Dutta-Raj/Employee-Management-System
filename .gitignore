@@ -19,8 +19,6 @@ ECHO is on.
 # Static files 
 staticfiles/ 
 ECHO is on.
-# IDE 
-.vscode/ 
-.idea/ 
-*.swp 
-*.swo 
+# OS files 
+.DS_Store 
+Thumbs.db 
